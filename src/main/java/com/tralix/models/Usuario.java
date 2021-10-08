@@ -1,5 +1,6 @@
 package com.tralix.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -31,5 +32,6 @@ public class Usuario {
 	private String estado;
 	
 	@AssertTrue
+	@Column(name="politicas_privacidad")
 	private Boolean politicasPrivacidad=false;
 }
