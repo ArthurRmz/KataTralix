@@ -1,14 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:h="http://java.sun.com/jsf/html"
-  xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f = "http://java.sun.com/jsf/core">
 
 <h:head>
-  <title>PrimeFaces Hello World Example</title>
+	<title>Prueba Tralix</title>
 </h:head>
 
 <h:body>
-	<h:outputText value="Prueba" />
+	<h:form id="helloworld-form">
+
+		<p:panel header="Registro de usuarios">
+			<h:panelGrid columns="3" cellpadding="4">
+				<h:outputText value="Email: " />
+				<p:inputText id="email" value="#{usuarioController.usuario.email}">
+					<f:ajax event="valueChange" render="emailMesagge" />
+				</p:inputText>
+				 <h:message for="email" id="emailMesagge" errorClass="error" warnClass="warn" infoClass="info"/>
+
+				<h:outputText value="Nombre: " />
+				<p:inputText id="nombre" value="#{usuarioController.usuario.nombre}">
+					<f:ajax event="valueChange" render="nombreMesagge" />
+				</p:inputText>
+				 <h:message for="nombre" id="nombreMesagge" errorClass="error" warnClass="warn" infoClass="info"/>
+
+				<h:outputText value="Estado: " />
+				<p:inputText id="estado" value="#{usuarioController.usuario.estado}">
+					<f:ajax event="valueChange" render="estadoMesagge" />
+				</p:inputText>
+				 <h:message for="estado" id="estadoMesagge" errorClass="error" warnClass="warn" infoClass="info"/>
+
+				<h:outputText value="Empresa: " />
+				<p:inputText id="empresa" value="#{usuarioController.usuario.empresa}">
+					<f:ajax event="valueChange" render="empresaMesagge" />
+				</p:inputText>
+				 <h:message for="empresa" id="empresaMesagge" errorClass="error" warnClass="warn" infoClass="info"/>
+				
+				<h:outputText  value="Aceptas terminos y condiciones: " />
+				<h:selectBooleanCheckbox id="terminosCondiciones" value="#{usuarioController.usuario.politicasPrivacidad}">
+					<f:ajax event="valueChange" render="terminosCondicionesMesagge" />
+				</h:selectBooleanCheckbox>
+				 <h:message for="terminosCondiciones" id="terminosCondicionesMesagge" errorClass="error" warnClass="warn" infoClass="info"/>
+				
+				<p:commandButton value="Guardar datos"
+					action="#{usuarioController.guardarUsuario()}">
+				</p:commandButton>
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
 </h:body>
 </html>

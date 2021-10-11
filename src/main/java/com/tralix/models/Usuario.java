@@ -9,9 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import lombok.Data;
 
@@ -30,19 +30,19 @@ public class Usuario implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Email
+	@Email(message = "El correo no tiene formato valido")
 	private String email;
 	
-	@NotNull
+	@NotEmpty(message = "El nombre no puede ser vacio")
 	private String nombre;
 	
-	@NotNull
+	@NotEmpty(message = "Especifica el nombre de empresa")
 	private String empresa;
 	
-	@NotNull
+	@NotEmpty(message = "El estado no puede ser vacio")
 	private String estado;
 	
-	@AssertTrue
+	@AssertTrue(message = "Acepta las politicas de privacidad")
 	@Column(name="politicas_privacidad")
 	private Boolean politicasPrivacidad=false;
 }
